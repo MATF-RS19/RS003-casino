@@ -28,16 +28,19 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     igrac_slot.cpp \
-    igrac.cpp 
+    igrac.cpp \ 
+    slot.cpp
 
 HEADERS += \
         mainwindow.h \
     igrac.h \
-    igrac_slot.h 
+    igrac_slot.h \ 
+    slot.h
 
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    slot.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
