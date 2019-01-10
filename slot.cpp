@@ -1,16 +1,26 @@
 #include "slot.h"
 #include "ui_slot.h"
 #include "mainwindow.h"
-#include "odluka.h"
+#include "manja_veca.h"
 
-Slot::Slot(Igrac_slot igrac, int ulog) :
-    QDialog(nullptr), m_igrac(igrac), m_ulog(ulog),
+Slot::Slot(Igrac_slot &igrac, int ulog) :
+    QDialog(nullptr), m_igrac(&igrac), m_ulog(ulog),
     ui(new Ui::Slot)
 {
     ui->setupUi(this);
+    ui->back->setStyleSheet("border-image:url(:/slike/back.png);");
+
+
+    /*
+    QPixmap pozadina(":/slike/slot_pozadina.jpg");
+    pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
+
+    QPalette paleta;
+    paleta.setBrush(QPalette::Background, pozadina);
+    setPalette(paleta);
+    */
+
     generisi_sliku();
-    ui->poeni->setNum(m_poeni);
-    ui->kredit->setNum(m_igrac.kredit());
 
 }
 
@@ -22,26 +32,60 @@ Slot::~Slot()
 
 void Slot::igraj(){
 
-    if(m_igrac.kredit() >= m_ulog){
+    if(m_igrac->kredit() >= m_ulog){
 
         m_poeni = 0;
 
         m_poeni += provera_matrice();
-        ui->poeni->setNum(m_poeni);
         if(m_poeni > 0){
-            Odluka odluka(m_igrac, m_poeni, m_ulog);
-            odluka.setModal(true);
-            odluka.exec();
+            ui->da->setVisible(true);
+            ui->ne->setVisible(true);
+            ui->pitanje->setVisible(true);
+            ui->OsvojiliSte->setVisible(true);
+            ui->poeni->setVisible(true);
+            ui->poeni->setNum(m_poeni);
+
+            ui->ulog1->setVisible(false);
+            ui->ulog2->setVisible(false);
+            ui->ulog3->setVisible(false);
+
+            ui->pushButton->setVisible(false);
+
+
         }
         else {
-            m_igrac.izmeni_kredit(-m_ulog);
+            m_igrac->izmeni_kredit(-m_ulog);
         }
-        ui->kredit->setNum(m_igrac.kredit());
+        ui->kredit->setNum(m_igrac->kredit());
 
     }
     else {
         ui->poruka->setText("NEMATE VISE KREDITA");
     }
+}
+
+void Slot::kretanje_vockica(QLabel*& labela,unsigned brojac){
+
+
+    animacija = new QPropertyAnimation(labela, "geometry");
+
+
+    QLabel* pocetna;
+    if(brojac<3)
+        pocetna=ui->start_1;
+    else if(brojac>2 && brojac<6)
+        pocetna=ui->start_2;
+    else
+        pocetna=ui->start_3;
+
+
+    animacija->setDuration(200);
+    animacija->setStartValue(pocetna->geometry());
+    animacija->setEndValue(labela->geometry());
+    animacija->start();
+
+
+
 }
 
 int myrandom (int i) {
@@ -91,6 +135,15 @@ int Slot::provera_pobede(int k1, int k2, int k3){
 
 void Slot::generisi_sliku(){
 
+    ui->da->setVisible(false);
+    ui->ne->setVisible(false);
+    ui->pitanje->setVisible(false);
+    ui->OsvojiliSte->setVisible(false);
+    ui->poeni->setVisible(false);
+
+
+
+
     std::srand(unsigned(std::time(nullptr)));
     random_shuffle(m_vocke.begin(), m_vocke.end(), myrandom);
     std::vector<QLabel*> niz_labela = {ui->slika_1, ui->slika_2, ui->slika_3, ui->slika_4, ui->slika_5,
@@ -104,7 +157,10 @@ void Slot::generisi_sliku(){
         QPixmap pix(ime_fajla);
         niz_labela.at(i)->setPixmap(pix);
         niz_labela.at(i)->setScaledContents(true);
+        kretanje_vockica(niz_labela.at(i),i);
     }
+    ui->kredit->setNum(m_igrac->kredit());
+
 
 }
 
@@ -113,3 +169,65 @@ void Slot::on_pushButton_clicked()
     igraj();
 }
 
+
+
+void Slot::on_back_clicked(){
+    close();
+}
+
+void Slot::on_ulog1_clicked()
+{
+    m_ulog = 50;
+}
+
+void Slot::on_ulog2_clicked(){
+    m_ulog = 100;
+}
+
+void Slot::on_ulog3_clicked(){
+    m_ulog = 200;
+}
+
+void Slot::on_da_clicked()
+{
+    ui->ulog1->setVisible(true);
+    ui->ulog2->setVisible(true);
+    ui->ulog3->setVisible(true);
+
+    ui->pushButton->setVisible(true);
+    ui->da->setVisible(false);
+    ui->ne->setVisible(false);
+    ui->pitanje->setVisible(false);
+    ui->OsvojiliSte->setVisible(false);
+    ui->poeni->setVisible(false);
+
+
+    Manja_veca manja_veca(*m_igrac, m_poeni, m_ulog);
+    manja_veca.setModal(true);
+    manja_veca.exec();
+    ui->kredit->setNum(m_igrac->kredit());
+
+
+
+}
+
+void Slot::on_ne_clicked()
+{
+    ui->ulog1->setVisible(true);
+    ui->ulog2->setVisible(true);
+    ui->ulog3->setVisible(true);
+
+    ui->pushButton->setVisible(true);
+    ui->da->setVisible(false);
+    ui->ne->setVisible(false);
+    ui->pitanje->setVisible(false);
+    ui->OsvojiliSte->setVisible(false);
+    ui->poeni->setVisible(false);
+
+
+    m_igrac->izmeni_kredit(m_poeni);
+    ui->kredit->setNum(m_igrac->kredit());
+
+
+
+}

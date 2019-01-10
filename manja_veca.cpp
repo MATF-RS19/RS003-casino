@@ -7,10 +7,21 @@ Manja_veca::Manja_veca(Igrac_slot& igrac, int poeni, int ulog) :
     ui(new Ui::Manja_veca), m_igrac(&igrac), m_poeni(poeni), m_ulog(ulog)
 {
     ui->setupUi(this);
+    generisi_pocetnu_sliku();
+}
+
+void Manja_veca::generisi_pocetnu_sliku(){
     ui->nastavljam->setVisible(false);
+    ui->Izadji->setVisible(false);
     QPixmap pix(":/slike/karta.png");
     ui->sakrivena->setPixmap(pix);
     ui->sakrivena->setScaledContents(true);
+
+    ui->zarada->setNum(m_poeni);
+
+    ui->manja->setVisible(true);
+    ui->veca->setVisible(true);
+
 
     std::srand(unsigned (std::time(nullptr)));
 
@@ -25,6 +36,7 @@ Manja_veca::Manja_veca(Igrac_slot& igrac, int poeni, int ulog) :
     ui->igrac->setScaledContents(true);
 
     m_skrivena_karta = uzmi_kartu(spil);
+
 }
 
 Manja_veca::~Manja_veca()
@@ -46,6 +58,8 @@ void Manja_veca::igraj(){
     QPixmap pix(nadji_putanju(m_skrivena_karta));
     ui->sakrivena->setPixmap(pix);
     ui->sakrivena->setScaledContents(true);
+    ui->manja->setVisible(false);
+    ui->veca->setVisible(false);
 
     if(m_indikator == 1){
         if(m_igrac->karta() < m_skrivena_karta){
@@ -54,6 +68,8 @@ void Manja_veca::igraj(){
         }
         else{
             m_poeni = -m_ulog;
+            ui->odustajem->setVisible(false);
+            ui->Izadji->setVisible(true);
         }
     }
     else if(m_indikator == 2){
@@ -63,6 +79,8 @@ void Manja_veca::igraj(){
         }
         else{
             m_poeni = -m_ulog;
+            ui->odustajem->setVisible(false);
+            ui->Izadji->setVisible(true);
         }
     }
 }
@@ -88,14 +106,15 @@ void Manja_veca::on_veca_clicked(){
 }
 
 void Manja_veca::on_nastavljam_clicked(){
-
-    Manja_veca manja_veca(*m_igrac, m_poeni, m_ulog);
-    manja_veca.setModal(true);
-    manja_veca.exec();
-    close();
+    generisi_pocetnu_sliku();
 }
 
 void Manja_veca::on_odustajem_clicked(){
     m_igrac->izmeni_kredit(m_poeni);
+    close();
+}
+
+void Manja_veca::on_Izadji_clicked(){
+    m_igrac->izmeni_kredit(-m_ulog);
     close();
 }

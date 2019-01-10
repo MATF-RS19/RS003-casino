@@ -1,13 +1,17 @@
 <RCC>
     <qresource prefix="/slike">
-        <file>7.png</file>
         <file>6.png</file>
         <file>5.png</file>
         <file>4.png</file>
-        <file>3.png</file>
-        <file>2.png</file>
         <file>1.png</file>
         <file>0.png</file>
+        <file>button_blackjack.png</file>
+        <file>button_slot.png</file>
+        <file>7.png</file>
+        <file>3.png</file>
+        <file>2.png</file>
+        <file>karta.png</file>
+        <file>button_quit.png</file>
         <file>tref13.png</file>
         <file>tref12.png</file>
         <file>tref11.png</file>
@@ -21,6 +25,55 @@
         <file>tref3.png</file>
         <file>tref2.png</file>
         <file>tref1.png</file>
-        <file>karta.png</file>
+        <file>pik13.png</file>
+        <file>pik12.png</file>
+        <file>pik11.png</file>
+        <file>pik10.png</file>
+        <file>pik9.png</file>
+        <file>pik8.png</file>
+        <file>pik7.png</file>
+        <file>pik6.png</file>
+        <file>pik5.png</file>
+        <file>pik4.png</file>
+        <file>pik3.png</file>
+        <file>pik2.png</file>
+        <file>pik1.png</file>
+        <file>karo13.png</file>
+        <file>karo12.png</file>
+        <file>karo11.png</file>
+        <file>karo10.png</file>
+        <file>karo9.png</file>
+        <file>karo8.png</file>
+        <file>karo7.png</file>
+        <file>karo6.png</file>
+        <file>karo5.png</file>
+        <file>karo4.png</file>
+        <file>karo3.png</file>
+        <file>karo2.png</file>
+        <file>karo1.png</file>
+        <file>herc13.png</file>
+        <file>herc12.png</file>
+        <file>herc11.png</file>
+        <file>herc10.png</file>
+        <file>herc9.png</file>
+        <file>herc8.png</file>
+        <file>herc7.png</file>
+        <file>herc6.png</file>
+        <file>herc5.png</file>
+        <file>herc4.png</file>
+        <file>herc3.png</file>
+        <file>herc2.png</file>
+        <file>herc1.png</file>
+        <file>spil.png</file>
+        <file>blackjack_sto.jpg</file>
+        <file>background.jpg</file>
+        <file>button_prijavi_se.png</file>
+        <file>slot_pozadina.jpg</file>
+        <file>unmute.png</file>
+        <file>mute.png</file>
+        <file>back.png</file>
+    </qresource>
+    <qresource prefix="/muzika">
+        <file>KAZINO.mp3</file>
     </qresource>
 </RCC>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
+    <width>519</width>
     <height>440</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>     Sakrivena</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="igrac">
@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>          Igrac</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="manja">
@@ -89,6 +89,45 @@
    </property>
    <property name="text">
     <string>Odustajem</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Izadji">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>260</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Izadji</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>40</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Trenutni dobitak:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="zarada">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>40</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

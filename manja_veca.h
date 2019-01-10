@@ -39,6 +39,8 @@ private slots:
 
     void on_odustajem_clicked();
 
+    void on_Izadji_clicked();
+
 private:
     Ui::Manja_veca *ui;
     Igrac_slot *m_igrac;
@@ -49,7 +51,7 @@ private:
     int m_skrivena_karta;
 
     QString nadji_putanju(int karta);
-
+    void generisi_pocetnu_sliku();
 
 };
 

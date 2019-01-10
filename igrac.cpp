@@ -14,10 +14,13 @@ void Igrac::izmeni_kredit(int dobitak){
     m_kredit += dobitak;
 }
 
-int Igrac::zelim_da_igram() const{
-    return m_zelim_da_igram;
+void Igrac::postavi_ime(std::string ime){
+    m_ime_igraca = ime;
+}
+void Igrac::postavi_kredit(int kredit){
+    m_kredit = kredit;
 }
 
-void Igrac::izmeni_zelim_da_igram(){
-    m_zelim_da_igram = false;
+std::string Igrac::ime(){
+    return m_ime_igraca;
 }

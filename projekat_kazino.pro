@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+         multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,7 +31,6 @@ SOURCES += \
     igrac.cpp \
     igrac_slot.cpp \
     slot.cpp \
-    odluka.cpp \
     manja_veca.cpp
 
 HEADERS += \
@@ -38,13 +38,11 @@ HEADERS += \
     igrac.h \
     igrac_slot.h \
     slot.h \
-    odluka.h \
     manja_veca.h
 
 FORMS += \
         mainwindow.ui \
     slot.ui \
-    odluka.ui \
     manja_veca.ui
 
 # Default rules for deployment.
@@ -54,3 +52,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES +=

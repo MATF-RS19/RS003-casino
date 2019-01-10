@@ -14,8 +14,7 @@
 class Igrac_slot :public Igrac
 {
 public:
-    Igrac_slot(std::string ime = " ", int kredit = 1000);
-
+    Igrac_slot(std::string ime = "untitled", int kredit = 1000);
     int karta() const;
     void dodaj_kartu(int karta);
 
