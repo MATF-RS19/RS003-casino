@@ -31,7 +31,12 @@ public:
     explicit Slot(Igrac_slot igrac, int ulog = 10);
     ~Slot();
 
+    Slot();
+
     void igraj();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Igrac_slot m_igrac;
@@ -39,7 +44,10 @@ private:
                                 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 0, 0};
     int m_ulog;
     int m_poeni = 0;
+    int m_indikator_za_slot = 1;
+
     int provera_matrice();
+    void generisi_sliku();
     int provera_pobede(int k1,int k2,int k3);
 
     Ui::Slot *ui;

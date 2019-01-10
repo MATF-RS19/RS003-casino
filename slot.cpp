@@ -1,12 +1,17 @@
 #include "slot.h"
 #include "ui_slot.h"
 #include "mainwindow.h"
+#include "odluka.h"
 
 Slot::Slot(Igrac_slot igrac, int ulog) :
     QDialog(nullptr), m_igrac(igrac), m_ulog(ulog),
     ui(new Ui::Slot)
 {
     ui->setupUi(this);
+    generisi_sliku();
+    ui->poeni->setNum(m_poeni);
+    ui->kredit->setNum(m_igrac.kredit());
+
 }
 
 Slot::~Slot()
@@ -17,21 +22,26 @@ Slot::~Slot()
 
 void Slot::igraj(){
 
-    while(m_igrac.kredit() >= m_ulog){
+    if(m_igrac.kredit() >= m_ulog){
 
         m_poeni = 0;
 
         m_poeni += provera_matrice();
+        ui->poeni->setNum(m_poeni);
         if(m_poeni > 0){
-            m_igrac.izmeni_kredit(m_poeni);
+            Odluka odluka(m_igrac, m_poeni, m_ulog);
+            odluka.setModal(true);
+            odluka.exec();
         }
         else {
             m_igrac.izmeni_kredit(-m_ulog);
         }
-        std::cout << "Trenutno imate: " << m_igrac.kredit() << "poena" << std::endl;
-    }
+        ui->kredit->setNum(m_igrac.kredit());
 
-    std::cout << "Nemate vise novca" << std::endl;
+    }
+    else {
+        ui->poruka->setText("NEMATE VISE KREDITA");
+    }
 }
 
 int myrandom (int i) {
@@ -41,8 +51,7 @@ int myrandom (int i) {
 int Slot::provera_matrice(){
 
     int poeni = 0;
-    std::srand(unsigned(std::time(nullptr)));
-    random_shuffle(m_vocke.begin(), m_vocke.end(), myrandom);
+    generisi_sliku();
 
     std::vector<int> kolona1(3);
     std::copy(m_vocke.begin(), m_vocke.begin()+3, kolona1.begin());
@@ -78,5 +87,29 @@ int Slot::provera_pobede(int k1, int k2, int k3){
         return 10*m_ulog;
     else
         return 0;
+}
+
+void Slot::generisi_sliku(){
+
+    std::srand(unsigned(std::time(nullptr)));
+    random_shuffle(m_vocke.begin(), m_vocke.end(), myrandom);
+    std::vector<QLabel*> niz_labela = {ui->slika_1, ui->slika_2, ui->slika_3, ui->slika_4, ui->slika_5,
+                                       ui->slika_6, ui->slika_7, ui->slika_8, ui->slika_9};
+
+    for(unsigned i = 0; i<9; i++){
+        QString folder = ":/slike/";
+        std::string broj = std::to_string(m_vocke.at(i));
+        QString vocka = QString::fromUtf8(broj.c_str());
+        QString ime_fajla = folder.append(vocka).append(".png");
+        QPixmap pix(ime_fajla);
+        niz_labela.at(i)->setPixmap(pix);
+        niz_labela.at(i)->setScaledContents(true);
+    }
+
+}
+
+void Slot::on_pushButton_clicked()
+{
+    igraj();
 }
 

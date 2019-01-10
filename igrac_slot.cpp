@@ -1,9 +1,15 @@
 #include "igrac_slot.h"
 
-void Igrac_slot::promeni_manja_veca(){
-    m_manja_veca = !m_manja_veca;
+Igrac_slot::Igrac_slot(std::string ime, int kredit): Igrac(ime,kredit)
+    {
+    }
+int Igrac_slot::karta() const{
+    return m_karta;
 }
 
-bool Igrac_slot::manja_veca() const{
-    return m_manja_veca;
+void Igrac_slot::dodaj_kartu(int karta){
+    m_karta = karta;
 }
+
+
+

@@ -10,20 +10,18 @@
 #include <algorithm>
 #include <ctime>
 #include <cstdlib>
-#include <list>
 
-class Igrac_slot : public Igrac
+class Igrac_slot :public Igrac
 {
 public:
-    Igrac_slot(std::string ime, int kredit)
-        : Igrac(ime,kredit){}
+    Igrac_slot(std::string ime = " ", int kredit = 1000);
 
-    void promeni_manja_veca();
-
-    bool manja_veca() const;
+    int karta() const;
+    void dodaj_kartu(int karta);
 
 private:
-    bool m_manja_veca = false;
+    int m_karta;
+
 };
 
 #endif // IGRAC_SLOT_H

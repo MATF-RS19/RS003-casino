@@ -1,19 +1,16 @@
 #ifndef IGRAC_H
 #define IGRAC_H
 
+
 #include <iostream>
 #include <string>
 #include <vector>
 
+
 class Igrac
 {
 public:
-    Igrac(std::string ime_igraca, int kredit)
-        : m_ime_igraca(ime_igraca),
-          m_kredit(kredit)
-    {
-    }
-
+    Igrac(std::string ime_igraca = " ", int kredit = 1000);
     int kredit() const;
 
     void izmeni_kredit(int dobitak);
@@ -27,6 +24,5 @@ private:
     int m_kredit;
     bool m_zelim_da_igram = true;
 };
-
 
 #endif // IGRAC_H

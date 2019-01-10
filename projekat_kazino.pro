@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-12-26T22:09:49
+# Project created by QtCreator 2019-01-02T15:12:02
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = projekat
+TARGET = projekat_kazino
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -27,22 +27,30 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+    igrac.cpp \
     igrac_slot.cpp \
-    igrac.cpp \ 
-    slot.cpp
+    slot.cpp \
+    odluka.cpp \
+    manja_veca.cpp
 
 HEADERS += \
         mainwindow.h \
     igrac.h \
-    igrac_slot.h \ 
-    slot.h
-
+    igrac_slot.h \
+    slot.h \
+    odluka.h \
+    manja_veca.h
 
 FORMS += \
         mainwindow.ui \
-    slot.ui
+    slot.ui \
+    odluka.ui \
+    manja_veca.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc
