@@ -9,24 +9,25 @@ Slot::Slot(Igrac_slot &igrac, int ulog) :
     ui(new Ui::Slot)
 {
     ui->setupUi(this);
-    ui->back->setStyleSheet("border-image:url(:/slike/back.png);");
+    this->setWindowTitle("SLOT");
 
+    ui->back->setStyleSheet("border-image:url(:/slike/back.png);");
     ui->pushButton->setStyleSheet("border-image:url(:/slike/push_button.png);");
     ui->da->setStyleSheet("border-image:url(:/slike/DA.png);");
     ui->ne->setStyleSheet("border-image:url(:/slike/NE.png);");
-
     ui->ulog1->setStyleSheet("border-image:url(:/slike/50.png);");
     ui->ulog2->setStyleSheet("border-image:url(:/slike/100.png);");
     ui->ulog3->setStyleSheet("border-image:url(:/slike/200.png);");
     ui->kredit->setStyleSheet("font-size:14pt; font-weight:600; color:#ffffff;");
-    ui->poeni->setStyleSheet(" font-size:14pt; font-weight:600; color:#ffffff;");
+    ui->poeni->setStyleSheet("font-size:14pt; font-weight:600; color:#ffffff;");
+    ui->poruka->setStyleSheet("font-size:14pt; font-weight:600; color:#ffffff;");
+
+
     QPixmap pozadina(":/slike/slot_backg.jpg");
     pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
-
     QPalette paleta;
     paleta.setBrush(QPalette::Background, pozadina);
     setPalette(paleta);
-
 
     generisi_sliku();
 
@@ -93,12 +94,10 @@ void Slot::kretanje_vockica(QLabel*& labela,unsigned brojac){
     else
         pocetna=ui->start_3;
 
-
     animacija->setDuration(200);
     animacija->setStartValue(pocetna->geometry());
     animacija->setEndValue(labela->geometry());
     animacija->start();
-
 
 
 }
@@ -220,7 +219,6 @@ void Slot::on_da_clicked(){
     manja_veca.setModal(true);
     manja_veca.exec();
     ui->kredit->setNum(m_igrac->kredit());
-
 
 
 }

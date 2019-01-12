@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QPixmap pozadina(":/slike/background.jpg");
     pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
-
+    this->setWindowTitle("Pocetni ekran");
     QPalette paleta;
     paleta.setBrush(QPalette::Background, pozadina);
     setPalette(paleta);
@@ -52,12 +52,11 @@ void MainWindow::on_slot_clicked(){
     ui->label_3->setVisible(false);
     ui->label_4->setVisible(false);
     if(indikator_za_prijavu){
-        Igrac_slot igrac(m_igrac.ime(), m_igrac.kredit());
 
-        kopija = igrac;
-        Slot slot(kopija, 100);
+        igrac_slot.postavi_ime(m_igrac.ime());
+        igrac_slot.postavi_kredit(m_igrac.kredit());
 
-
+        Slot slot(igrac_slot, 100);
         slot.setModal(true);
         slot.exec();
     }
@@ -65,10 +64,9 @@ void MainWindow::on_slot_clicked(){
         ui->label_5->setVisible(true);
     }
     if(indikator_za_prijavu){
-        m_igrac.postavi_kredit(kopija.kredit());
+        m_igrac.postavi_kredit(igrac_slot.kredit());
         ui->novac->setNum(m_igrac.kredit());
     }
-
 
 }
 
@@ -130,9 +128,9 @@ void MainWindow::on_black_jack_clicked(){
     ui->label_4->setVisible(false);
 
     if(indikator_za_prijavu){
-        Igrac_bj igrac(m_igrac.ime(), m_igrac.kredit());
+        igrac_bj.postavi_ime(m_igrac.ime());
+        igrac_bj.postavi_kredit(m_igrac.kredit());
 
-        igrac_bj = igrac;
         Black_jack black_jack(igrac_bj, 100);
         black_jack.setModal(true);
         black_jack.exec();

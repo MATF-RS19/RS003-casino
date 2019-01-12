@@ -13,7 +13,7 @@ Manja_veca::Manja_veca(Igrac_slot& igrac, int poeni, int ulog) :
     QPalette paleta;
     paleta.setBrush(QPalette::Background, pozadina);
     setPalette(paleta);
-
+    this->setWindowTitle("Manja-vaca");
     ui->manja->setStyleSheet("border-image:url(:/slike/button_manja.png);");
 
     ui->veca->setStyleSheet("border-image:url(:/slike/button_veca.png);");
@@ -42,8 +42,6 @@ void Manja_veca::generisi_pocetnu_sliku(){
 
     ui->manja->setVisible(true);
     ui->veca->setVisible(true);
-
-
 
 
     std::srand(unsigned (std::time(nullptr)));
@@ -109,9 +107,8 @@ void Manja_veca::igraj(){
 }
 
 int Manja_veca::uzmi_kartu(std::list<int>& spil){
-    auto it = spil.begin();
-    std::advance(it, 0);
 
+    auto it = spil.begin();
     spil.pop_front();
 
     return *it;

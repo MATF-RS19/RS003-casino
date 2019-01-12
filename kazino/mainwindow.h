@@ -39,7 +39,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Igrac m_igrac;
-    Igrac_slot kopija;
+    Igrac_slot igrac_slot;
     Igrac_bj igrac_bj;
 
     QMediaPlayer *muzika;

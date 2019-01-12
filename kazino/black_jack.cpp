@@ -13,12 +13,11 @@ Black_jack::Black_jack(Igrac_bj &igrac, int ulog) :
     ui->novac->setStyleSheet(" font-size:14pt; color:#ffffff;");
     ui->rezultat->setStyleSheet(" font-size:14pt; color:#ffffff;");
     ui->back->setStyleSheet("border-image:url(:/slike/back_bj.png);");
-
+    this->setWindowTitle("Blackjack");
 
     for(int i = 0; i<broj_karata_u_spilu; i++){
         m_karte.push_back(i);
     }
-
 
     QPixmap pozadina(":/slike/blackjack_sto.jpg");
     pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -289,6 +288,7 @@ void Black_jack::on_ulog50_clicked(){
 void Black_jack::on_ulog100_clicked(){
     QPixmap pix1(":/slike/cip50.png");
     QPixmap pix2(":/slike/cip100.png");
+
     kretanje_cipova(ui->cip100_2, ui->cip100, pix2, "igrac");
     kretanje_cipova(ui->pobedio_racunar, ui->racunar100, pix2, "racunar");
     m_ulog = 100;
