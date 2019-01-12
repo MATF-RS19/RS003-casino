@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "manja_veca.h"
 
+
 Slot::Slot(Igrac_slot &igrac, int ulog) :
     QDialog(nullptr), m_igrac(&igrac), m_ulog(ulog),
     ui(new Ui::Slot)
@@ -10,15 +11,20 @@ Slot::Slot(Igrac_slot &igrac, int ulog) :
     ui->setupUi(this);
     ui->back->setStyleSheet("border-image:url(:/slike/back.png);");
 
+    ui->pushButton->setStyleSheet("border-image:url(:/slike/push_button.png);");
+    ui->da->setStyleSheet("border-image:url(:/slike/DA.png);");
+    ui->ne->setStyleSheet("border-image:url(:/slike/NE.png);");
 
-    /*
-    QPixmap pozadina(":/slike/slot_pozadina.jpg");
+    ui->ulog1->setStyleSheet("border-image:url(:/slike/50.png);");
+    ui->ulog2->setStyleSheet("border-image:url(:/slike/100.png);");
+    ui->ulog3->setStyleSheet("border-image:url(:/slike/200.png);");
+    QPixmap pozadina(":/slike/slot_backg.jpg");
     pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
 
     QPalette paleta;
     paleta.setBrush(QPalette::Background, pozadina);
     setPalette(paleta);
-    */
+
 
     generisi_sliku();
 
@@ -29,6 +35,22 @@ Slot::~Slot()
     delete ui;
 }
 
+void Slot::ukljuci_vidljivost_odluke(){
+    ui->da->setVisible(true);
+    ui->ne->setVisible(true);
+    ui->pitanje->setVisible(true);
+    ui->OsvojiliSte->setVisible(true);
+    ui->poeni->setVisible(true);
+}
+void Slot::iskljuci_vidljivost_odluke(){
+
+    ui->da->setVisible(false);
+    ui->ne->setVisible(false);
+    ui->pitanje->setVisible(false);
+    ui->OsvojiliSte->setVisible(false);
+    ui->poeni->setVisible(false);
+
+}
 
 void Slot::igraj(){
 
@@ -38,19 +60,10 @@ void Slot::igraj(){
 
         m_poeni += provera_matrice();
         if(m_poeni > 0){
-            ui->da->setVisible(true);
-            ui->ne->setVisible(true);
-            ui->pitanje->setVisible(true);
-            ui->OsvojiliSte->setVisible(true);
-            ui->poeni->setVisible(true);
+            ukljuci_vidljivost_odluke();
             ui->poeni->setNum(m_poeni);
 
-            ui->ulog1->setVisible(false);
-            ui->ulog2->setVisible(false);
-            ui->ulog3->setVisible(false);
-
-            ui->pushButton->setVisible(false);
-
+            iskljuci_igranje_slota();
 
         }
         else {
@@ -135,14 +148,7 @@ int Slot::provera_pobede(int k1, int k2, int k3){
 
 void Slot::generisi_sliku(){
 
-    ui->da->setVisible(false);
-    ui->ne->setVisible(false);
-    ui->pitanje->setVisible(false);
-    ui->OsvojiliSte->setVisible(false);
-    ui->poeni->setVisible(false);
-
-
-
+    iskljuci_vidljivost_odluke();
 
     std::srand(unsigned(std::time(nullptr)));
     random_shuffle(m_vocke.begin(), m_vocke.end(), myrandom);
@@ -188,19 +194,25 @@ void Slot::on_ulog3_clicked(){
     m_ulog = 200;
 }
 
-void Slot::on_da_clicked()
-{
+void Slot::ukljuci_igranje_slota(){
     ui->ulog1->setVisible(true);
     ui->ulog2->setVisible(true);
     ui->ulog3->setVisible(true);
-
     ui->pushButton->setVisible(true);
-    ui->da->setVisible(false);
-    ui->ne->setVisible(false);
-    ui->pitanje->setVisible(false);
-    ui->OsvojiliSte->setVisible(false);
-    ui->poeni->setVisible(false);
+}
 
+void Slot::iskljuci_igranje_slota(){
+    ui->ulog1->setVisible(false);
+    ui->ulog2->setVisible(false);
+    ui->ulog3->setVisible(false);
+    ui->pushButton->setVisible(false);
+
+}
+
+void Slot::on_da_clicked(){
+
+    ukljuci_igranje_slota();
+    iskljuci_vidljivost_odluke();
 
     Manja_veca manja_veca(*m_igrac, m_poeni, m_ulog);
     manja_veca.setModal(true);
@@ -211,23 +223,12 @@ void Slot::on_da_clicked()
 
 }
 
-void Slot::on_ne_clicked()
-{
-    ui->ulog1->setVisible(true);
-    ui->ulog2->setVisible(true);
-    ui->ulog3->setVisible(true);
+void Slot::on_ne_clicked(){
 
-    ui->pushButton->setVisible(true);
-    ui->da->setVisible(false);
-    ui->ne->setVisible(false);
-    ui->pitanje->setVisible(false);
-    ui->OsvojiliSte->setVisible(false);
-    ui->poeni->setVisible(false);
-
+    ukljuci_igranje_slota();
+    iskljuci_vidljivost_odluke();
 
     m_igrac->izmeni_kredit(m_poeni);
     ui->kredit->setNum(m_igrac->kredit());
-
-
 
 }

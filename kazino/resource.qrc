@@ -68,10 +68,28 @@
         <file>blackjack_sto.jpg</file>
         <file>background.jpg</file>
         <file>button_prijavi_se.png</file>
-        <file>slot_pozadina.jpg</file>
         <file>unmute.png</file>
         <file>mute.png</file>
         <file>back.png</file>
+        <file>zabrana.png</file>
+        <file>cip100.png</file>
+        <file>cip50.png</file>
+        <file>back_bj.png</file>
+        <file>providna.png</file>
+        <file>slot_pozadina.jpg</file>
+        <file>push_button.png</file>
+        <file>slot_backg.jpg</file>
+        <file>50.png</file>
+        <file>100.png</file>
+        <file>200.png</file>
+        <file>DA.png</file>
+        <file>NE.png</file>
+        <file>button_izadji.png</file>
+        <file>button_manja.png</file>
+        <file>button_nastavljam.png</file>
+        <file>button_odustajem.png</file>
+        <file>button_veca.png</file>
+        <file>manja_veca_background.jpg</file>
     </qresource>
     <qresource prefix="/muzika">
         <file>KAZINO.mp3</file>

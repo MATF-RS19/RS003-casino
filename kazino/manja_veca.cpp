@@ -7,10 +7,30 @@ Manja_veca::Manja_veca(Igrac_slot& igrac, int poeni, int ulog) :
     ui(new Ui::Manja_veca), m_igrac(&igrac), m_poeni(poeni), m_ulog(ulog)
 {
     ui->setupUi(this);
+    QPixmap pozadina(":/slike/manja_veca_background.jpg");
+    pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
+
+    QPalette paleta;
+    paleta.setBrush(QPalette::Background, pozadina);
+    setPalette(paleta);
+
+    ui->manja->setStyleSheet("border-image:url(:/slike/button_manja.png);");
+
+    ui->veca->setStyleSheet("border-image:url(:/slike/button_veca.png);");
+
+
+    ui->nastavljam->setStyleSheet("border-image:url(:/slike/button_nastavljam.png);");
+    ui->odustajem->setStyleSheet("border-image:url(:/slike/button_odustajem.png);");
+    ui->Izadji->setStyleSheet("border-image:url(:/slike/button_izadji.png);");
+
+
+
     generisi_pocetnu_sliku();
 }
 
 void Manja_veca::generisi_pocetnu_sliku(){
+
+
     ui->nastavljam->setVisible(false);
     ui->Izadji->setVisible(false);
     QPixmap pix(":/slike/karta.png");
@@ -21,6 +41,8 @@ void Manja_veca::generisi_pocetnu_sliku(){
 
     ui->manja->setVisible(true);
     ui->veca->setVisible(true);
+
+
 
 
     std::srand(unsigned (std::time(nullptr)));

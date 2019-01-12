@@ -8,6 +8,13 @@ Black_jack::Black_jack(Igrac_bj &igrac, int ulog) :
 {
     ui->setupUi(this);
 
+    ui->ulog50->setStyleSheet("border-image:url(:/slike/cip50.png);");
+    ui->ulog100->setStyleSheet("border-image:url(:/slike/cip100.png);");
+    ui->novac->setStyleSheet(" font-size:14pt; color:#ffffff;");
+    ui->rezultat->setStyleSheet(" font-size:14pt; color:#ffffff;");
+    ui->back->setStyleSheet("border-image:url(:/slike/back_bj.png);");
+
+
     for(int i = 0; i<broj_karata_u_spilu; i++){
         m_karte.push_back(i);
     }
@@ -18,6 +25,8 @@ Black_jack::Black_jack(Igrac_bj &igrac, int ulog) :
     QPalette paleta;
     paleta.setBrush(QPalette::Background, pozadina);
     setPalette(paleta);
+
+    ui->podeli->setStyleSheet("QPushButton{border: 0px;}");
 
     pocetni_izgled_ekrana();
 }
@@ -30,10 +39,14 @@ Black_jack::~Black_jack()
 void Black_jack::pocetni_izgled_ekrana(){
     m_igrac->izbrisi();
     m_racunar.izbrisi();
-
+    ui->ulog50->setVisible(false);
+    ui->ulog100->setVisible(false);
     for(unsigned i = 0; i<m_spil.size(); i++){
         m_spil.pop_front();
     }
+
+    m_pobednik = false;
+
 
     std::vector<QLabel *> vektor_labela = {ui->karta_igraca_1, ui->karta_igraca_2, ui->karta_igraca_3,
                                            ui->karta_igraca_4, ui->karta_igraca_5, ui->karta_igraca_6,
@@ -52,6 +65,8 @@ void Black_jack::pocetni_izgled_ekrana(){
 
     m_niz_labela_igrac = niz_labela_igrac;
     m_niz_labela_racunar = niz_labela_racunar;
+
+
 
     std::srand(unsigned(std::time(nullptr)));
     std::list<int> spil(m_karte.size());
@@ -79,8 +94,8 @@ T Black_jack::uzmi_prvi_element(std::list<T>& spil){
 void Black_jack::on_podeli_clicked(){
 
 
-    if(m_igrac->kredit() >= m_ulog){
-
+    if(m_igrac->kredit() > 0){
+        proveri_ulog();
         for(unsigned i = 0; i<2; i++){
             QLabel* labela_igrac = uzmi_prvi_element(m_niz_labela_igrac);
             postavi_kartu(labela_igrac, "igrac");
@@ -104,6 +119,11 @@ void Black_jack::on_podeli_clicked(){
         ui->ne_zelim->setVisible(true);
         ui->podeli->setVisible(false);
     }
+    else{
+        ui->rezultat->setText("Nemate vise kredita!");
+        ui->rezultat->setVisible(true);
+    }
+
 }
 
 void Black_jack::postavi_kartu(QLabel*& labela, std::string &&ko_igra){
@@ -131,11 +151,12 @@ void Black_jack::postavi_kartu(QLabel*& labela, std::string &&ko_igra){
 
 void Black_jack::deljenje_karata(QLabel*& labela){
     animacija = new QPropertyAnimation(labela, "geometry");
-    animacija->setDuration(1000);
+    animacija->setDuration(800);
     animacija->setStartValue(ui->spil->geometry());
     animacija->setEndValue(labela->geometry());
     animacija->start();
 }
+
 
 QString Black_jack::napravi_putanju(int rb_karte){
     int boja_karte = rb_karte%4;
@@ -164,6 +185,7 @@ void Black_jack::on_back_clicked(){
 }
 
 void Black_jack::on_ne_zelim_clicked(){
+
     ui->sakrivena_karta->setVisible(false);
     ui->karta_racunara_2->setVisible(true);
     ui->sledeca_karta->setVisible(false);
@@ -171,19 +193,26 @@ void Black_jack::on_ne_zelim_clicked(){
     ui->ne_zelim->setVisible(false);
 
     while(m_racunar.suma() <= 17){
+        if(m_racunar.suma() > m_igrac->suma())
+            break;
         QLabel* labela = uzmi_prvi_element(m_niz_labela_racunar);
         postavi_kartu(labela, "racunar");
+
     }
+
     if(m_igrac->suma() == 21){
         if((m_racunar.suma() == 21 and m_igrac->broj_karata() == 2 and m_racunar.broj_karata() != 2)
                 or m_racunar.suma() != 21){
             m_igrac->izmeni_kredit(3*m_ulog);
             ui->rezultat->setText("POBEDLI STE!!!");
+            m_pobednik = true;
+
         }
     }
     else if(m_racunar.suma() > 21 || m_igrac->suma() > m_racunar.suma()){
         m_igrac->izmeni_kredit(2*m_ulog);
         ui->rezultat->setText("POBEDLI STE!!!");
+        m_pobednik = true;
     }
     else if(m_racunar.suma() > m_igrac->suma()){
         m_igrac->izmeni_kredit(-m_ulog);
@@ -191,7 +220,10 @@ void Black_jack::on_ne_zelim_clicked(){
     }
     else{
         ui->rezultat->setText("Nereseno");
+        m_pobednik = true;
     }
+
+    provera_pobede();
 
     ui->nova_igra->setVisible(true);
     ui->sledeca_karta->setVisible(false);
@@ -201,6 +233,14 @@ void Black_jack::on_ne_zelim_clicked(){
 }
 
 void Black_jack::on_sledeca_karta_clicked(){
+    ui->ulog50->setVisible(false);
+    ui->ulog100->setVisible(false);
+    if(!odabran_ulog){
+        QPixmap pix2(":/slike/cip100.png");
+        kretanje_cipova(ui->cip100_2, ui->cip100, pix2, "igrac");
+        kretanje_cipova(ui->pobedio_racunar, ui->racunar100, pix2, "racunar");
+    }
+
     QLabel* labela = uzmi_prvi_element(m_niz_labela_igrac);
     postavi_kartu(labela, "igrac");
     if(m_igrac->suma() > 21){
@@ -210,14 +250,117 @@ void Black_jack::on_sledeca_karta_clicked(){
         ui->nova_igra->setVisible(true);
         ui->sledeca_karta->setVisible(false);
         ui->ne_zelim->setVisible(false);
+        provera_pobede();
 
     }
 }
 
 
-
 void Black_jack::on_nova_igra_clicked(){
+
     ui->sledeca_karta->setVisible(false);
     ui->podeli->setVisible(true);
+    labela_ulog->setVisible(false);
+    labela_racunar->setVisible(false);
     pocetni_izgled_ekrana();
+}
+
+void Black_jack::on_ulog50_clicked(){
+    QPixmap pix1(":/slike/cip50.png");
+    QPixmap pix2(":/slike/cip100.png");
+
+    kretanje_cipova(ui->cip50_2, ui->cip50, pix1, "igrac");
+    kretanje_cipova(ui->pobedio_racunar, ui->racunar100, pix1, "racunar");
+    m_ulog = 50;
+    ui->ulog50->setVisible(false);
+    ui->ulog100->setVisible(false);
+    odabran_ulog = true;
+}
+
+void Black_jack::on_ulog100_clicked(){
+    QPixmap pix1(":/slike/cip50.png");
+    QPixmap pix2(":/slike/cip100.png");
+    kretanje_cipova(ui->cip100_2, ui->cip100, pix2, "igrac");
+    kretanje_cipova(ui->pobedio_racunar, ui->racunar100, pix2, "racunar");
+    m_ulog = 100;
+
+    ui->ulog50->setVisible(false);
+    ui->ulog100->setVisible(false);
+    odabran_ulog = true;
+
+}
+
+void Black_jack::kretanje_cipova(QLabel* &ko_salje, QLabel* &gde_saljem,
+                                 QPixmap &pix, std::string&& ko_igra){
+
+    if(ko_igra == "igrac"){
+        labela_ulog = new QLabel(this);
+        labela_ulog->setPixmap(pix);
+        labela_ulog->setScaledContents(true);
+        labela_ulog->setVisible(true);
+
+        animacija_za_cipove = new QPropertyAnimation(labela_ulog, "geometry");
+        animacija_za_cipove->setDuration(800);
+        animacija_za_cipove->setStartValue(ko_salje->geometry());
+        animacija_za_cipove->setEndValue(gde_saljem->geometry());
+        animacija_za_cipove->start();
+    }
+    else{
+        labela_racunar = new QLabel(this);
+        labela_racunar->setPixmap(pix);
+        labela_racunar->setScaledContents(true);
+        labela_racunar->setVisible(true);
+
+        animacija_za_cipove = new QPropertyAnimation(labela_racunar, "geometry");
+        animacija_za_cipove->setDuration(800);
+        animacija_za_cipove->setStartValue(ko_salje->geometry());
+        animacija_za_cipove->setEndValue(gde_saljem->geometry());
+        animacija_za_cipove->start();
+    }
+}
+
+
+void Black_jack::proveri_ulog(){
+    if(m_igrac->kredit()>= 100){
+        ui->ulog50->setVisible(true);
+        ui->ulog100->setVisible(true);
+    }else if(m_igrac->kredit()>= 50){
+        ui->ulog50->setVisible(true);
+        ui->ulog100->setVisible(false);
+    }
+    else {
+        ui->ulog50->setVisible(false);
+        ui->ulog100->setVisible(false);
+    }
+}
+
+void Black_jack::provera_pobede(){
+    QPixmap pix1(":/slike/cip50.png");
+    QPixmap pix2(":/slike/cip100.png");
+    labela_ulog->setVisible(false);
+    labela_racunar->setVisible(false);
+
+
+    if(m_pobednik){
+        if(m_ulog == 50){
+            kretanje_cipova(ui->cip50, ui->cip50_2, pix1, "igrac");
+            kretanje_cipova(ui->racunar50, ui->cip50_2, pix1, "racunar");
+        }
+        else{
+            kretanje_cipova(ui->cip100, ui->cip100_2, pix2, "igrac");
+            kretanje_cipova(ui->racunar100, ui->cip100_2, pix2, "racunar");
+        }
+    }
+    else{
+        if(m_ulog == 50){
+            kretanje_cipova(ui->cip50, ui->pobedio_racunar, pix1, "igrac");
+            kretanje_cipova(ui->racunar50, ui->pobedio_racunar, pix1, "racunar");
+        }
+        else{
+            kretanje_cipova(ui->cip100, ui->pobedio_racunar, pix2, "igrac");
+            kretanje_cipova(ui->racunar100, ui->pobedio_racunar, pix2, "racunar");
+        }
+    }
+
+
 }

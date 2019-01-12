@@ -52,19 +52,6 @@
     <string>Sledeca karta</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="back">
-   <property name="geometry">
-    <rect>
-     <x>620</x>
-     <y>60</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Back</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="ne_zelim">
    <property name="geometry">
     <rect>
@@ -81,14 +68,17 @@
   <widget class="QPushButton" name="podeli">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>230</y>
-     <width>141</width>
-     <height>25</height>
+     <x>730</x>
+     <y>30</y>
+     <width>81</width>
+     <height>61</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Podeli karte</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="karta_igraca_2">
@@ -237,9 +227,9 @@
   <widget class="QLabel" name="rezultat">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>260</y>
-     <width>151</width>
+     <x>60</x>
+     <y>200</y>
+     <width>271</width>
      <height>31</height>
     </rect>
    </property>
@@ -250,21 +240,21 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>10</y>
-     <width>121</width>
+     <x>60</x>
+     <y>240</y>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Trenutno stanje:</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#eeeeec;&quot;&gt;Trenutno stanje:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="novac">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>10</y>
+     <x>220</x>
+     <y>240</y>
      <width>81</width>
      <height>21</height>
     </rect>
@@ -293,6 +283,136 @@
      <y>80</y>
      <width>61</width>
      <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pobedio_racunar">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>30</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cip50">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>270</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cip100">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>270</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ulog50">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>420</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ulog100">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>420</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cip50_2">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>460</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cip100_2">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>460</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="back">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>60</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="racunar100">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>190</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="racunar50">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>190</y>
+     <width>31</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">

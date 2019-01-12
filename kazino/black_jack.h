@@ -46,15 +46,27 @@ private slots:
 
     void on_nova_igra_clicked();
 
+    void on_ulog50_clicked();
+
+    void on_ulog100_clicked();
+
 private:
     Igrac_bj* m_igrac;
     Racunar_bj m_racunar;
     int broj_karata_u_spilu = 52;
     std::vector<int> m_karte;
     std::list<int> m_spil;
+    bool m_pobednik = false;
+    bool odabran_ulog = false;
+
+    QLabel* labela_ulog;
+    QLabel* labela_racunar;
+
 
 
     QPropertyAnimation *animacija;
+    QPropertyAnimation *animacija_za_cipove;
+
 
     std::list<QLabel*> m_niz_labela_igrac;
     std::list<QLabel*> m_niz_labela_racunar;
@@ -69,6 +81,9 @@ private:
     void postavi_kartu(QLabel*& labela, std::string &&ko_igra);
     int izracunaj_zbir();
     Ui::Black_jack *ui;
+    void proveri_ulog();
+    void provera_pobede();
+    void kretanje_cipova(QLabel *&ko_salje, QLabel *&gde_saljem, QPixmap &pix, std::string &&ko_igra);
 };
 
 #endif // BLACK_JACK_H

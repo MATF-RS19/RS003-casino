@@ -64,6 +64,10 @@ private:
     void generisi_sliku();
     int provera_pobede(int k1,int k2,int k3);
     Ui::Slot *ui;
+    void ukljuci_vidljivost_odluke();
+    void iskljuci_vidljivost_odluke();
+    void ukljuci_igranje_slota();
+    void iskljuci_igranje_slota();
 };
 
 #endif // SLOT_H

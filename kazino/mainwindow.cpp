@@ -16,10 +16,15 @@ MainWindow::MainWindow(QWidget *parent) :
     paleta.setBrush(QPalette::Background, pozadina);
     setPalette(paleta);
 
+    QPixmap zabrana(":/slike/zabrana.png");
+    ui->zabrana->setPixmap(zabrana);
+    ui->zabrana->setScaledContents(true);
+
     ui->label_3->setVisible(false);
     ui->label_4->setVisible(false);
     ui->label_5->setVisible(false);
     ui->label_6->setVisible(false);
+
 
     ui->slot->setStyleSheet("border-image:url(:/slike/button_slot.png);");
     ui->black_jack->setStyleSheet("border-image:url(:/slike/button_blackjack.png);");
@@ -36,8 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
     muzika->setMedia(QUrl("qrc:/muzika/KAZINO.mp3"));
     muzika->play();
 
-
-
 }
 
 MainWindow::~MainWindow()
@@ -45,8 +48,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_slot_clicked()
-{
+void MainWindow::on_slot_clicked(){
+    ui->label_3->setVisible(false);
+    ui->label_4->setVisible(false);
     if(indikator_za_prijavu){
         Igrac_slot igrac(m_igrac.ime(), m_igrac.kredit());
 
@@ -74,6 +78,7 @@ void MainWindow::on_quit_clicked()
 }
 
 void MainWindow::on_prijava_clicked(){
+
     QString qime = ui->ime->text();
     std::string ime = qime.toUtf8().constData();
 
@@ -95,7 +100,9 @@ void MainWindow::on_prijava_clicked(){
         ui->label_5->setVisible(false);
         ui->label_6->setVisible(false);
         ui->ime_2->setText(qime);
+        ui->ime_2->setStyleSheet(" font-size:14pt; color:#ffffff;");
         ui->novac->setNum(m_igrac.kredit());
+        ui->novac->setStyleSheet(" font-size:14pt; color:#ffffff;");
     }
     else{
         ui->label_6->setVisible(true);
@@ -119,6 +126,8 @@ bool MainWindow::provera_uloga(QString qulog){
 }
 
 void MainWindow::on_black_jack_clicked(){
+    ui->label_3->setVisible(false);
+    ui->label_4->setVisible(false);
 
     if(indikator_za_prijavu){
         Igrac_bj igrac(m_igrac.ime(), m_igrac.kredit());

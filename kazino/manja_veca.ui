@@ -42,27 +42,27 @@
   <widget class="QPushButton" name="manja">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>60</x>
      <y>330</y>
-     <width>81</width>
+     <width>91</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>MANJA</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="veca">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>210</x>
      <y>330</y>
-     <width>81</width>
+     <width>91</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>VECA</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="nastavljam">
@@ -70,12 +70,12 @@
     <rect>
      <x>370</x>
      <y>140</y>
-     <width>89</width>
-     <height>25</height>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Nastavljam</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="odustajem">
@@ -83,12 +83,12 @@
     <rect>
      <x>370</x>
      <y>200</y>
-     <width>89</width>
-     <height>25</height>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Odustajem</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="Izadji">
@@ -96,12 +96,12 @@
     <rect>
      <x>370</x>
      <y>260</y>
-     <width>89</width>
-     <height>25</height>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Izadji</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -114,7 +114,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Trenutni dobitak:</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;Trenutni dobitak:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="zarada">
