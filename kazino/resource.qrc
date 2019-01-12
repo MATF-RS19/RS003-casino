@@ -90,6 +90,9 @@
         <file>button_odustajem.png</file>
         <file>button_veca.png</file>
         <file>manja_veca_background.jpg</file>
+        <file>button_sledeca-karta.png</file>
+        <file>button_nova-igra.png</file>
+        <file>button_ne-zelim-da-vucem.png</file>
     </qresource>
     <qresource prefix="/muzika">
         <file>KAZINO.mp3</file>

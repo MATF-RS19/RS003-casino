@@ -17,7 +17,7 @@
 
 #include "igrac_bj.h"
 #include "racunar_bj.h"
-
+#include "ui_mainwindow.h"
 
 
 namespace Ui {
@@ -29,7 +29,7 @@ class Black_jack : public QDialog
     Q_OBJECT
 
 public:
-    explicit Black_jack(Igrac_bj& igrac, int ulog = 100);
+    explicit Black_jack(Igrac_bj& igrac, int ulog = 100, QMainWindow *MainWindow = nullptr);
     ~Black_jack();
 
     void igraj();
@@ -62,7 +62,8 @@ private:
     QLabel* labela_ulog;
     QLabel* labela_racunar;
 
-
+    Ui::Black_jack *ui;
+    QMainWindow *m_MainWindow;
 
     QPropertyAnimation *animacija;
     QPropertyAnimation *animacija_za_cipove;
@@ -80,7 +81,7 @@ private:
     QString napravi_putanju(int rb_karte);
     void postavi_kartu(QLabel*& labela, std::string &&ko_igra);
     int izracunaj_zbir();
-    Ui::Black_jack *ui;
+
     void proveri_ulog();
     void provera_pobede();
     void kretanje_cipova(QLabel *&ko_salje, QLabel *&gde_saljem, QPixmap &pix, std::string &&ko_igra);

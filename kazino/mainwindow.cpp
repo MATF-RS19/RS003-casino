@@ -55,8 +55,8 @@ void MainWindow::on_slot_clicked(){
 
         igrac_slot.postavi_ime(m_igrac.ime());
         igrac_slot.postavi_kredit(m_igrac.kredit());
-
-        Slot slot(igrac_slot, 100);
+        this->hide();
+        Slot slot(igrac_slot, 100, this);
         slot.setModal(true);
         slot.exec();
     }
@@ -68,11 +68,16 @@ void MainWindow::on_slot_clicked(){
         ui->novac->setNum(m_igrac.kredit());
     }
 
+
 }
 
 void MainWindow::on_quit_clicked()
 {
     close();
+}
+
+void MainWindow::prikazi(){
+    this->show();
 }
 
 void MainWindow::on_prijava_clicked(){
@@ -130,10 +135,11 @@ void MainWindow::on_black_jack_clicked(){
     if(indikator_za_prijavu){
         igrac_bj.postavi_ime(m_igrac.ime());
         igrac_bj.postavi_kredit(m_igrac.kredit());
-
-        Black_jack black_jack(igrac_bj, 100);
+        this->hide();
+        Black_jack black_jack(igrac_bj, 100, this);
         black_jack.setModal(true);
         black_jack.exec();
+
     }
     else{
         ui->label_5->setVisible(true);

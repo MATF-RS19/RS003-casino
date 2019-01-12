@@ -2,9 +2,9 @@
 #include "ui_black_jack.h"
 #include "slot.h"
 
-Black_jack::Black_jack(Igrac_bj &igrac, int ulog) :
-    QDialog(nullptr), m_igrac(&igrac), m_ulog(ulog),
-    ui(new Ui::Black_jack)
+Black_jack::Black_jack(Igrac_bj &igrac, int ulog, QMainWindow *MainWindow) :
+    QDialog(nullptr), m_igrac(&igrac),
+    ui(new Ui::Black_jack), m_MainWindow(MainWindow), m_ulog(ulog)
 {
     ui->setupUi(this);
 
@@ -13,6 +13,9 @@ Black_jack::Black_jack(Igrac_bj &igrac, int ulog) :
     ui->novac->setStyleSheet(" font-size:14pt; color:#ffffff;");
     ui->rezultat->setStyleSheet(" font-size:14pt; color:#ffffff;");
     ui->back->setStyleSheet("border-image:url(:/slike/back_bj.png);");
+    ui->ne_zelim->setStyleSheet("border-image:url(:/slike/button_ne-zelim-da-vucem.png);");
+    ui->sledeca_karta->setStyleSheet("border-image:url(:/slike/button_sledeca-karta.png);");
+    ui->nova_igra->setStyleSheet("border-image:url(:/slike/button_nova-igra.png);");
     this->setWindowTitle("Blackjack");
 
     for(int i = 0; i<broj_karata_u_spilu; i++){
@@ -189,6 +192,7 @@ QString Black_jack::napravi_putanju(int rb_karte){
 }
 
 void Black_jack::on_back_clicked(){
+    m_MainWindow->show();
     close();
 }
 

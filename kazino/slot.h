@@ -17,6 +17,7 @@
 #include <QPropertyAnimation>
 #include <QLabel>
 #include "igrac_slot.h"
+#include "ui_mainwindow.h"
 
 
 int myrandom (int i);
@@ -31,7 +32,7 @@ class Slot : public QDialog
     Q_OBJECT
 
 public:
-    explicit Slot(Igrac_slot &igrac, int ulog = 10);
+    explicit Slot(Igrac_slot &igrac, int ulog = 10, QMainWindow *MainWindow = nullptr);
     ~Slot();
     void igraj();
 
@@ -63,7 +64,10 @@ private:
     int provera_matrice();
     void generisi_sliku();
     int provera_pobede(int k1,int k2,int k3);
+
     Ui::Slot *ui;
+    QMainWindow *m_MainWindow;
+
     void ukljuci_vidljivost_odluke();
     void iskljuci_vidljivost_odluke();
     void ukljuci_igranje_slota();

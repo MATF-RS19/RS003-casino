@@ -26,6 +26,7 @@ Manja_veca::Manja_veca(Igrac_slot& igrac, int poeni, int ulog) :
 
 
 
+
     generisi_pocetnu_sliku();
 }
 

@@ -4,9 +4,10 @@
 #include "manja_veca.h"
 
 
-Slot::Slot(Igrac_slot &igrac, int ulog) :
+
+Slot::Slot(Igrac_slot &igrac, int ulog, QMainWindow *MainWindow) :
     QDialog(nullptr), m_igrac(&igrac), m_ulog(ulog),
-    ui(new Ui::Slot)
+    ui(new Ui::Slot), m_MainWindow(MainWindow)
 {
     ui->setupUi(this);
     this->setWindowTitle("SLOT");
@@ -179,6 +180,7 @@ void Slot::on_pushButton_clicked()
 
 
 void Slot::on_back_clicked(){
+    m_MainWindow->show();
     close();
 }
 

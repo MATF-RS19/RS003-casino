@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void prikazi();
 
 private slots:
     void on_slot_clicked();
@@ -45,6 +46,7 @@ private:
     QMediaPlayer *muzika;
     bool indikator_za_prijavu = false;
     bool provera_uloga(QString ulog);
+
 };
 
 #endif // MAINWINDOW_H

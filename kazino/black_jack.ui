@@ -16,7 +16,7 @@
   <widget class="QLabel" name="karta_igraca_1">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>480</x>
      <y>310</y>
      <width>61</width>
      <height>81</height>
@@ -42,27 +42,27 @@
   <widget class="QPushButton" name="sledeca_karta">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>670</x>
      <y>300</y>
      <width>151</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Sledeca karta</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="ne_zelim">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>670</x>
      <y>330</y>
      <width>151</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Ne zelim da vucem</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="podeli">
@@ -84,7 +84,7 @@
   <widget class="QLabel" name="karta_igraca_2">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>390</x>
      <y>310</y>
      <width>61</width>
      <height>81</height>
@@ -97,7 +97,7 @@
   <widget class="QLabel" name="karta_igraca_4">
    <property name="geometry">
     <rect>
-     <x>520</x>
+     <x>580</x>
      <y>310</y>
      <width>61</width>
      <height>81</height>
@@ -110,7 +110,7 @@
   <widget class="QLabel" name="karta_igraca_3">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>300</x>
      <y>310</y>
      <width>61</width>
      <height>81</height>
@@ -123,7 +123,7 @@
   <widget class="QLabel" name="karta_igraca_5">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>310</y>
      <width>61</width>
      <height>81</height>
@@ -136,7 +136,7 @@
   <widget class="QLabel" name="karta_racunara_4">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>590</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
@@ -149,7 +149,7 @@
   <widget class="QLabel" name="karta_racunara_5">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>220</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
@@ -162,7 +162,7 @@
   <widget class="QLabel" name="karta_racunara_2">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>400</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
@@ -175,7 +175,7 @@
   <widget class="QLabel" name="karta_racunara_1">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>490</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
@@ -188,7 +188,7 @@
   <widget class="QLabel" name="karta_racunara_3">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>310</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
@@ -201,7 +201,7 @@
   <widget class="QLabel" name="sakrivena_karta">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>400</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
@@ -221,7 +221,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Nova igra</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="rezultat">
@@ -266,7 +266,7 @@
   <widget class="QLabel" name="karta_igraca_6">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>120</x>
      <y>310</y>
      <width>61</width>
      <height>81</height>
@@ -279,7 +279,7 @@
   <widget class="QLabel" name="karta_racunara_6">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>130</x>
      <y>80</y>
      <width>61</width>
      <height>81</height>
