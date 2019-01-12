@@ -19,6 +19,7 @@ Black_jack::Black_jack(Igrac_bj &igrac, int ulog) :
         m_karte.push_back(i);
     }
 
+
     QPixmap pozadina(":/slike/blackjack_sto.jpg");
     pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
 
@@ -45,7 +46,10 @@ void Black_jack::pocetni_izgled_ekrana(){
         m_spil.pop_front();
     }
 
+    odabran_ulog = false;
+    m_ulog =100;
     m_pobednik = false;
+
 
 
     std::vector<QLabel *> vektor_labela = {ui->karta_igraca_1, ui->karta_igraca_2, ui->karta_igraca_3,
@@ -66,6 +70,11 @@ void Black_jack::pocetni_izgled_ekrana(){
     m_niz_labela_igrac = niz_labela_igrac;
     m_niz_labela_racunar = niz_labela_racunar;
 
+    labela_ulog = new QLabel(this);
+    labela_ulog->setVisible(false);
+
+    labela_racunar = new QLabel(this);
+    labela_racunar->setVisible(false);
 
 
     std::srand(unsigned(std::time(nullptr)));
@@ -294,19 +303,17 @@ void Black_jack::kretanje_cipova(QLabel* &ko_salje, QLabel* &gde_saljem,
                                  QPixmap &pix, std::string&& ko_igra){
 
     if(ko_igra == "igrac"){
-        labela_ulog = new QLabel(this);
         labela_ulog->setPixmap(pix);
         labela_ulog->setScaledContents(true);
         labela_ulog->setVisible(true);
 
         animacija_za_cipove = new QPropertyAnimation(labela_ulog, "geometry");
-        animacija_za_cipove->setDuration(800);
+        animacija_za_cipove->setDuration(600);
         animacija_za_cipove->setStartValue(ko_salje->geometry());
         animacija_za_cipove->setEndValue(gde_saljem->geometry());
         animacija_za_cipove->start();
     }
     else{
-        labela_racunar = new QLabel(this);
         labela_racunar->setPixmap(pix);
         labela_racunar->setScaledContents(true);
         labela_racunar->setVisible(true);

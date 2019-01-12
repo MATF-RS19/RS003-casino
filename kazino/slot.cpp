@@ -18,6 +18,8 @@ Slot::Slot(Igrac_slot &igrac, int ulog) :
     ui->ulog1->setStyleSheet("border-image:url(:/slike/50.png);");
     ui->ulog2->setStyleSheet("border-image:url(:/slike/100.png);");
     ui->ulog3->setStyleSheet("border-image:url(:/slike/200.png);");
+    ui->kredit->setStyleSheet("font-size:14pt; font-weight:600; color:#ffffff;");
+    ui->poeni->setStyleSheet(" font-size:14pt; font-weight:600; color:#ffffff;");
     QPixmap pozadina(":/slike/slot_backg.jpg");
     pozadina = pozadina.scaled(this->size(), Qt::IgnoreAspectRatio);
 

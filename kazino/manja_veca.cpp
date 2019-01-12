@@ -17,6 +17,7 @@ Manja_veca::Manja_veca(Igrac_slot& igrac, int poeni, int ulog) :
     ui->manja->setStyleSheet("border-image:url(:/slike/button_manja.png);");
 
     ui->veca->setStyleSheet("border-image:url(:/slike/button_veca.png);");
+    ui->zarada->setStyleSheet(" font-size:14pt; color:#ffffff;");
 
 
     ui->nastavljam->setStyleSheet("border-image:url(:/slike/button_nastavljam.png);");
