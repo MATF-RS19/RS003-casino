@@ -4,8 +4,10 @@
 #include <QMainWindow>
 #include <iostream>
 #include <string>
+#include <QMediaPlayer>
 #include "igrac.h"
 #include "igrac_slot.h"
+#include "igrac_bj.h"
 
 bool proveri_broj(bool rezultat, char x);
 
@@ -28,11 +30,19 @@ private slots:
 
     void on_prijava_clicked();
 
+    void on_black_jack_clicked();
+
+    void on_mute_clicked();
+
+    void on_unmute_clicked();
+
 private:
     Ui::MainWindow *ui;
     Igrac m_igrac;
     Igrac_slot kopija;
+    Igrac_bj igrac_bj;
 
+    QMediaPlayer *muzika;
     bool indikator_za_prijavu = false;
     bool provera_uloga(QString ulog);
 };

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "slot.h"
+#include "black_jack.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +25,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->black_jack->setStyleSheet("border-image:url(:/slike/button_blackjack.png);");
     ui->quit->setStyleSheet("border-image:url(:/slike/button_quit.png);");
     ui->prijava->setStyleSheet("border-image:url(:/slike/button_prijavi_se.png);");
+
+    ui->mute->setStyleSheet("border-image:url(:/slike/mute.png);");
+    ui->unmute->setStyleSheet("border-image:url(:/slike/unmute.png);");
+
+    ui->mute->setVisible(true);
+    ui->unmute->setVisible(false);
+
+    muzika = new QMediaPlayer();
+    muzika->setMedia(QUrl("qrc:/muzika/KAZINO.mp3"));
+    muzika->play();
+
 
 
 }
@@ -106,3 +118,35 @@ bool MainWindow::provera_uloga(QString qulog){
 
 }
 
+void MainWindow::on_black_jack_clicked(){
+
+    if(indikator_za_prijavu){
+        Igrac_bj igrac(m_igrac.ime(), m_igrac.kredit());
+
+        igrac_bj = igrac;
+        Black_jack black_jack(igrac_bj, 100);
+        black_jack.setModal(true);
+        black_jack.exec();
+    }
+    else{
+        ui->label_5->setVisible(true);
+    }
+    if(indikator_za_prijavu){
+        m_igrac.postavi_kredit(igrac_bj.kredit());
+        ui->novac->setNum(m_igrac.kredit());
+    }
+}
+
+void MainWindow::on_mute_clicked(){
+    muzika->stop();
+    ui->mute->setVisible(false);
+    ui->unmute->setVisible(true);
+}
+
+
+
+void MainWindow::on_unmute_clicked(){
+    muzika->play();
+    ui->mute->setVisible(true);
+    ui->unmute->setVisible(false);
+}

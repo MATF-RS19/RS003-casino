@@ -31,19 +31,26 @@ SOURCES += \
     igrac.cpp \
     igrac_slot.cpp \
     slot.cpp \
-    manja_veca.cpp
+    manja_veca.cpp \
+    igrac_bj.cpp \
+    racunar_bj.cpp \
+    black_jack.cpp
 
 HEADERS += \
         mainwindow.h \
     igrac.h \
     igrac_slot.h \
     slot.h \
-    manja_veca.h
+    manja_veca.h \
+    igrac_bj.h \
+    racunar_bj.h \
+    black_jack.h
 
 FORMS += \
         mainwindow.ui \
     slot.ui \
-    manja_veca.ui
+    manja_veca.ui \
+    black_jack.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
