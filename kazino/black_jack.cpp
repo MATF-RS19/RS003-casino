@@ -46,8 +46,8 @@ void Black_jack::pocetni_izgled_ekrana(){
     }
 
     odabran_ulog = false;
-    m_ulog =100;
-    m_pobednik = false;
+    m_ulog = 100;
+    m_pobednik = 0;
 
 
 
@@ -213,14 +213,14 @@ void Black_jack::on_ne_zelim_clicked(){
                 or m_racunar.suma() != 21){
             m_igrac->izmeni_kredit(3*m_ulog);
             ui->rezultat->setText("POBEDLI STE!!!");
-            m_pobednik = true;
+            m_pobednik = 1;
 
         }
     }
     else if(m_racunar.suma() > 21 || m_igrac->suma() > m_racunar.suma()){
         m_igrac->izmeni_kredit(2*m_ulog);
-        ui->rezultat->setText("POBEDLI STE!!!");
-        m_pobednik = true;
+        ui->rezultat->setText("POBEDILI STE!!!");
+        m_pobednik = 1;
     }
     else if(m_racunar.suma() > m_igrac->suma()){
         m_igrac->izmeni_kredit(-m_ulog);
@@ -228,7 +228,7 @@ void Black_jack::on_ne_zelim_clicked(){
     }
     else{
         ui->rezultat->setText("Nereseno");
-        m_pobednik = true;
+        m_pobednik = 2;
     }
 
     provera_pobede();
@@ -247,6 +247,7 @@ void Black_jack::on_sledeca_karta_clicked(){
         QPixmap pix2(":/slike/cip100.png");
         kretanje_cipova(ui->cip100_2, ui->cip100, pix2, "igrac");
         kretanje_cipova(ui->pobedio_racunar, ui->racunar100, pix2, "racunar");
+        odabran_ulog = true;
     }
 
     QLabel* labela = uzmi_prvi_element(m_niz_labela_igrac);
@@ -348,7 +349,7 @@ void Black_jack::provera_pobede(){
     labela_racunar->setVisible(false);
 
 
-    if(m_pobednik){
+    if(m_pobednik == 1){
         if(m_ulog == 50){
             kretanje_cipova(ui->cip50, ui->cip50_2, pix1, "igrac");
             kretanje_cipova(ui->racunar50, ui->cip50_2, pix1, "racunar");
@@ -358,7 +359,7 @@ void Black_jack::provera_pobede(){
             kretanje_cipova(ui->racunar100, ui->cip100_2, pix2, "racunar");
         }
     }
-    else{
+    else if(m_pobednik == 0){
         if(m_ulog == 50){
             kretanje_cipova(ui->cip50, ui->pobedio_racunar, pix1, "igrac");
             kretanje_cipova(ui->racunar50, ui->pobedio_racunar, pix1, "racunar");
@@ -367,6 +368,17 @@ void Black_jack::provera_pobede(){
             kretanje_cipova(ui->cip100, ui->pobedio_racunar, pix2, "igrac");
             kretanje_cipova(ui->racunar100, ui->pobedio_racunar, pix2, "racunar");
         }
+    }
+    else{
+        if(m_ulog == 50){
+            kretanje_cipova(ui->cip50, ui->cip50_2, pix1, "igrac");
+            kretanje_cipova(ui->racunar50, ui->pobedio_racunar, pix1, "racunar");
+        }
+        else{
+            kretanje_cipova(ui->cip100,  ui->cip100_2, pix2, "igrac");
+            kretanje_cipova(ui->racunar100, ui->pobedio_racunar, pix2, "racunar");
+        }
+
     }
 
 

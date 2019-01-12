@@ -56,7 +56,7 @@ private:
     int broj_karata_u_spilu = 52;
     std::vector<int> m_karte;
     std::list<int> m_spil;
-    bool m_pobednik = false;
+    int m_pobednik = 0;
     bool odabran_ulog = false;
 
     QLabel* labela_ulog;
